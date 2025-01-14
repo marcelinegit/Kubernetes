@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: alma
+  labels:
+    class: study-group
+    purpose: test
+spec:
+  # modify replicas according to your case
+  replicas: 20
+  selector:
+    matchLabels:
+      class: study-group
+      purpose: test  
+  template:
+    metadata:
+      labels:
+        class: study-group
+        purpose: test
+    spec:
+      containers:
+      - name: alma
+        image: nginx:latest

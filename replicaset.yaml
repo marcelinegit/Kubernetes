@@ -1,0 +1,23 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: rene-rs
+  labels:
+    name: rene
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: rene
+  template:
+    metadata:
+      labels:
+        name: rene
+    spec:
+      containers:
+      - name: rene-container
+        image: mlrene/boxer:latest-new
+        ports:
+        - containerPort: 80
+      #imagePullSecrets:
+        #- name:  myregistrykey
