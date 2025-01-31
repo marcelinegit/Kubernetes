@@ -1,0 +1,20 @@
+# recommended
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    env:
+    - name: app_config
+      valueFrom:
+        configMapKeyRef:
+          name: my-configmap
+          key: app-config
+    - name: log_level
+      valueFrom:
+        configMapKeyRef:
+          name: my-configmap
+          key: log_level     

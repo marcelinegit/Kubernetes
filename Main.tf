@@ -108,7 +108,7 @@ data "aws_ami" "most_recent_amazon_linux_ami" {
   owners      = ["amazon"]
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-*"]
+    values = ["ubuntu-eks/k8s_1.29/images/hvm-ssd/ubuntu-jammy-22.04-*"]
   }
   filter {
     name   = "virtualization-type"

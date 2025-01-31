@@ -1,0 +1,22 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: marciy-rs
+  labels:
+  name: marciy
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      name: marciy
+  template:
+    metadata:
+      labels:
+        name: marciy
+    spec:
+      containers:
+      - name: marciy-container
+        image: mlrene/carvilla_image:v1.0
+        ports:
+          - containerPort: 80
+                        

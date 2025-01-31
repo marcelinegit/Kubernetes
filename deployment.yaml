@@ -1,0 +1,32 @@
+apiVersion: apps/v1       # Specifies the version of the Kubernetes API that the resource belongs to. You can run the command "kubectl api-resources" to verify.
+kind: Deployment          # The k8s object being created
+metadata:                 # Can includes the name, namespace, labels, and annotations for the Deployment.
+  name: marciy-deployment-2 # The name of the deployment
+  labels:
+    app: marciy-2 # The label applied to the deployment.
+spec:
+  replicas: 3  # The desired number of Pods.
+  selector:  # Specifies the labels that identify the Pods to be managed by this Deployment.
+    matchLabels:
+      app: marciy-1 # this deployment identifies and manages the pods with this label.
+  template:  # Defines the template to use in creating the Pods. In this case, pods with be created with the label "app: my-app-1".
+    metadata:
+      labels:
+        app: marciy-1
+    spec: # The specification for the container to be created in the pod.
+      containers:
+      - name: marciy-container-2 # The container name.
+        image: mlrene/indian-lady:latest  # Container image to use in creating the container.
+        ports:
+        - containerPort: 80  # Exposed port on the container.
+  strategy:                # This defines the update strategy for the Deployment.
+    type: RollingUpdate    # This strategy replaces Pods incrementally, while maintaining availability.
+    rollingUpdate:
+      maxUnavailable: 1  # Max number of Pods to terminate at any time during update (you can use percentages here i.e. 25%)
+      maxSurge: 1        # Max number of Pods to add or create at a time during update (you can use percentages here i.e. 25%)
+# FEATURES OF DEPLOYMENTS:
+#1 Simplifies the process of managing applications by automating the creation, scaling, and rolling updates of Pods.
+#2 Rolling Update: You can use deployments to performs rolling updates to update Pods incrementally, minimizing downtime.
+#3 Rollbacks: If an update causes issues, you can roll back to a previous version.
+#4 Self-Healing: Deployments contain replicasets so if a Pod crashes or becomes unresponsive, the Deployment automatically replaces it with a new one.
+#5 Scaling: You can easily scale your application up or down by adjusting the number of replicas in the Deployment specification.

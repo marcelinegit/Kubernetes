@@ -1,0 +1,14 @@
+#not recomemded
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    env:
+    - name: app-config
+      value: "production"
+    - name: log_level
+      value: "debug"
